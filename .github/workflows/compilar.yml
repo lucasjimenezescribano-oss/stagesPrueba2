@@ -43,10 +43,22 @@ on:
       - run: pip install pyinstaller
       - run: pyinstaller --onefile comprova_desplegaments.py
 
- jobs:
   runs-on: ubuntu-latest
     steps:
      - uses: python comprova_desplegaments.py exemple.com
      - uses: python comprova_desplegaments.py exemple.com httpbin.org/status/500
      - uses: python comprova_desplegaments.py --fitxer urls.txt --eixida informe.csv
   
+
+
+  test-linux:
+    needs: build-linux
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/download-artifact@v4
+          with: 
+              path: dist
+
+      - run: chmod +x dist/comprova_desplegaments
+      - run: ./dist/comprova_desplegaments https://httpbin.org/status/200
