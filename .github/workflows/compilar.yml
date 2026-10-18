@@ -9,40 +9,44 @@ on:
 
      steps:
 
-      - name: actions/checkout@v4
-      - name: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
          witch:
              python-version '3.12'
 
       - run: pip install pyinstaller
       - run: pyinstaller --onefile comprova_desplegaments.py
 
-
- jobs:
   build-macos:
      runs-on: macos-latest
 
      steps:
 
-      - name: actions/checkout@v4
-      - name: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
          witch: 
              python-version '3.12'
 
       - run: pip install pyinstaller
       - run: pyinstaller --onefile comprova_desplegaments.py
 
- jobs: 
   build-windows:
      runs-on: windows-latest
 
      steps:
 
-      - name: actions/checkout@v4
-      - name: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
          witch: 
              python-version '3.12'
 
       - run: pip install pyinstaller
       - run: pyinstaller --onefile comprova_desplegaments.py
 
+ jobs:
+  runs-on: ubuntu-latest
+    steps:
+     - uses: python comprova_desplegaments.py exemple.com
+     - uses: python comprova_desplegaments.py exemple.com httpbin.org/status/500
+     - uses: python comprova_desplegaments.py --fitxer urls.txt --eixida informe.csv
+  
